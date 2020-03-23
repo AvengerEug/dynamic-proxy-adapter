@@ -38,10 +38,13 @@
             </exclusions>
         </dependency>
 
+        <!-- 添加本地依赖 -->
         <dependency>
             <groupId>com.eugene.sumarry</groupId>
             <artifactId>thirdparty</artifactId>
             <version>1.0-SNAPSHOT</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/src/lib/thirdparty/thirdparty-1.0-SNAPSHOT.jar</systemPath>
         </dependency>
 
     </dependencies>
@@ -52,6 +55,10 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <!-- 需要添加此配置, 否则打成的jar包没有包含scope为system的依赖 -->
+                <configuration>
+                    <includeSystemScope>true</includeSystemScope>
+                </configuration>
             </plugin>
         </plugins>
     </build>
